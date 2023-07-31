@@ -10,7 +10,7 @@ func NewJason(contents []byte) (node.Node, error) {
 	if !json.Valid(contents) {
 		return nil, errors.New("not json")
 	}
-	mapNode, err := node.NewMapNode(contents)
+	mapNode, err := node.NewMapNodeContents(contents)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}

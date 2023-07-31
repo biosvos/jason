@@ -1,6 +1,7 @@
 package node
 
 import (
+	"encoding/json"
 	"errors"
 	"strconv"
 )
@@ -15,6 +16,10 @@ func NewBoolNode(element bool) *BoolNode {
 
 type BoolNode struct {
 	element bool
+}
+
+func (b *BoolNode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&b.element)
 }
 
 func (b *BoolNode) Path(path string) []Node {

@@ -1,5 +1,7 @@
 package node
 
+import "encoding/json"
+
 var _ Node = &LazyNode{}
 
 func NewLazyNode(parent *MapNode, key string, a any) *LazyNode {
@@ -14,6 +16,10 @@ type LazyNode struct {
 	parent *MapNode
 	key    string
 	data   any
+}
+
+func (l *LazyNode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(l.data)
 }
 
 func (l *LazyNode) Number() (float64, error) {

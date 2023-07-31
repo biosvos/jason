@@ -1,6 +1,8 @@
 package node
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/pkg/errors"
 	"strconv"
 	"strings"
@@ -20,6 +22,10 @@ var _ Node = &SliceNode{}
 
 type SliceNode struct {
 	elements []Node
+}
+
+func (s *SliceNode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&s.elements)
 }
 
 func (s *SliceNode) Number() (float64, error) {
@@ -55,5 +61,5 @@ func (s *SliceNode) String() string {
 	for _, element := range s.elements {
 		slice = append(slice, element.String())
 	}
-	return strings.Join(slice, ",")
+	return fmt.Sprintf("[%v]", strings.Join(slice, ","))
 }

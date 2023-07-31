@@ -1,6 +1,7 @@
 package node
 
 import (
+	"encoding/json"
 	"github.com/pkg/errors"
 	"strconv"
 )
@@ -15,6 +16,10 @@ func NewNumberNode(element float64) *NumberNode {
 
 type NumberNode struct {
 	element float64
+}
+
+func (n *NumberNode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&n.element)
 }
 
 func (n *NumberNode) Path(path string) []Node {

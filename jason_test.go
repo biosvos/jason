@@ -37,6 +37,14 @@ func TestGet(t *testing.T) {
 	})
 }
 
+func TestJson(t *testing.T) {
+	t.Run("", func(t *testing.T) {
+		root, _ := NewJason([]byte(`{"A":"HI"}`))
+
+		t.Log(root.String())
+	})
+}
+
 func TestString(t *testing.T) {
 	root, _ := NewJason([]byte(`{"A":"HI"}`))
 	get, _ := root.Get("A")

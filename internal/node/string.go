@@ -1,6 +1,7 @@
 package node
 
 import (
+	"encoding/json"
 	"github.com/pkg/errors"
 	"strconv"
 )
@@ -13,6 +14,10 @@ func NewStringNode(element string) *StringNode {
 
 type StringNode struct {
 	element string
+}
+
+func (s *StringNode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&s.element)
 }
 
 func (s *StringNode) Number() (float64, error) {

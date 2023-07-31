@@ -31,6 +31,10 @@ type MapNode struct {
 	elements map[string]Node
 }
 
+func (m *MapNode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&m.elements)
+}
+
 func (m *MapNode) Number() (float64, error) {
 	return 0, errors.New("failed to get number")
 }
