@@ -27,6 +27,14 @@ type MapNode struct {
 	elements map[string]Node
 }
 
+func (m *MapNode) Number() (float64, error) {
+	return 0, errors.New("failed to get number")
+}
+
+func (m *MapNode) Bool() (bool, error) {
+	return false, errors.New("failed to get bool")
+}
+
 func (m *MapNode) List() []Node {
 	var ret []Node
 	for _, node := range m.elements {

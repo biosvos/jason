@@ -1,6 +1,9 @@
 package node
 
-import "github.com/pkg/errors"
+import (
+	"github.com/pkg/errors"
+	"strconv"
+)
 
 var _ Node = &StringNode{}
 
@@ -10,6 +13,22 @@ func NewStringNode(element string) *StringNode {
 
 type StringNode struct {
 	element string
+}
+
+func (s *StringNode) Number() (float64, error) {
+	float, err := strconv.ParseFloat(s.element, 64)
+	if err != nil {
+		return 0, errors.WithStack(err)
+	}
+	return float, nil
+}
+
+func (s *StringNode) Bool() (bool, error) {
+	ret, err := strconv.ParseBool(s.element)
+	if err != nil {
+		return false, errors.WithStack(err)
+	}
+	return ret, nil
 }
 
 func (s *StringNode) List() []Node {

@@ -16,6 +16,18 @@ type LazyNode struct {
 	data   any
 }
 
+func (l *LazyNode) Number() (float64, error) {
+	node := MakeFactory(l.data)
+	l.parent.UpdateNode(l.key, node)
+	return node.Number()
+}
+
+func (l *LazyNode) Bool() (bool, error) {
+	node := MakeFactory(l.data)
+	l.parent.UpdateNode(l.key, node)
+	return node.Bool()
+}
+
 func (l *LazyNode) List() []Node {
 	node := MakeFactory(l.data)
 	l.parent.UpdateNode(l.key, node)

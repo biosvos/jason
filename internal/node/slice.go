@@ -6,8 +6,6 @@ import (
 	"strings"
 )
 
-var _ Node = &SliceNode{}
-
 func NewSliceNode(slice []any) *SliceNode {
 	var elements []Node
 	for _, item := range slice {
@@ -18,8 +16,18 @@ func NewSliceNode(slice []any) *SliceNode {
 	}
 }
 
+var _ Node = &SliceNode{}
+
 type SliceNode struct {
 	elements []Node
+}
+
+func (s *SliceNode) Number() (float64, error) {
+	return 0, errors.New("failed to get number")
+}
+
+func (s *SliceNode) Bool() (bool, error) {
+	return false, errors.New("failed to get bool")
 }
 
 func (s *SliceNode) List() []Node {
