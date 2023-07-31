@@ -1,4 +1,4 @@
-package node
+package jason
 
 import (
 	"encoding/json"
@@ -8,10 +8,10 @@ import (
 	"strings"
 )
 
-func NewSliceNode(slice []any) *SliceNode {
+func newSliceNode(slice []any) *SliceNode {
 	var elements []Node
 	for _, item := range slice {
-		elements = append(elements, MakeFactory(item))
+		elements = append(elements, makeFactory(item))
 	}
 	return &SliceNode{
 		elements: elements,
@@ -41,7 +41,7 @@ func (s *SliceNode) List() []Node {
 }
 
 func (s *SliceNode) Path(path string) []Node {
-	return Path(s, path)
+	return nodePath(s, path)
 }
 
 func (s *SliceNode) Get(key string) (Node, error) {

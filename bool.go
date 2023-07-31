@@ -1,4 +1,4 @@
-package node
+package jason
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 
 var _ Node = &BoolNode{}
 
-func NewBoolNode(element bool) *BoolNode {
+func newBoolNode(element bool) *BoolNode {
 	return &BoolNode{
 		element: element,
 	}

@@ -1,4 +1,4 @@
-package node
+package jason
 
 import (
 	"github.com/stretchr/testify/require"
@@ -6,7 +6,7 @@ import (
 )
 
 func TestMapNode_MarshalJSON(t *testing.T) {
-	node := NewMapNode(map[string]any{
+	node := newMapNode(map[string]any{
 		"A": "C",
 		"B": []string{"D", "E"},
 	})

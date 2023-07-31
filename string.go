@@ -1,4 +1,4 @@
-package node
+package jason
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 
 var _ Node = &StringNode{}
 
-func NewStringNode(element string) *StringNode {
+func newStringNode(element string) *StringNode {
 	return &StringNode{element: element}
 }
 

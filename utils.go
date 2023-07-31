@@ -1,8 +1,8 @@
-package node
+package jason
 
 import "strings"
 
-func Path(node Node, path string) []Node {
+func nodePath(node Node, path string) []Node {
 	prev := []Node{node}
 
 	sp := strings.Split(path, ".")

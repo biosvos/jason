@@ -1,11 +1,11 @@
-package node
+package jason
 
 import (
 	"encoding/json"
 	"github.com/pkg/errors"
 )
 
-func NewMapNode(elements map[string]any) *MapNode {
+func newMapNode(elements map[string]any) *MapNode {
 	ret := MapNode{
 		elements: map[string]Node{},
 	}
@@ -15,14 +15,14 @@ func NewMapNode(elements map[string]any) *MapNode {
 	return &ret
 }
 
-func NewMapNodeContents(contents []byte) (*MapNode, error) {
+func newMapNodeContents(contents []byte) (*MapNode, error) {
 	var elements map[string]any
 	err := json.Unmarshal(contents, &elements)
 	if err != nil {
 		// 타입이 다를 수 있다.
 		return nil, errors.WithStack(err)
 	}
-	return NewMapNode(elements), nil
+	return newMapNode(elements), nil
 }
 
 var _ Node = &MapNode{}
@@ -56,7 +56,7 @@ func (m *MapNode) UpdateNode(key string, value Node) {
 }
 
 func (m *MapNode) AddNode(key string, value any) {
-	m.elements[key] = NewLazyNode(m, key, value)
+	m.elements[key] = newLazyNode(m, key, value)
 }
 
 func (m *MapNode) String() string {
@@ -65,7 +65,7 @@ func (m *MapNode) String() string {
 }
 
 func (m *MapNode) Path(path string) []Node {
-	return Path(m, path)
+	return nodePath(m, path)
 }
 
 func (m *MapNode) Get(key string) (Node, error) {

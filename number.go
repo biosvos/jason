@@ -1,4 +1,4 @@
-package node
+package jason
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 
 var _ Node = &NumberNode{}
 
-func NewNumberNode(element float64) *NumberNode {
+func newNumberNode(element float64) *NumberNode {
 	return &NumberNode{
 		element: element,
 	}
