@@ -10,6 +10,8 @@ func MakeFactory(a any) Node {
 		return NewBoolNode(v)
 	case int, int64, int32, int16, uint, uint16, uint32, uint64, float64, float32:
 		return numbericFactory(v)
+	case map[string]any:
+		return NewMapNode(v)
 	default:
 		panic(v)
 	}

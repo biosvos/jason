@@ -5,20 +5,24 @@ import (
 	"github.com/pkg/errors"
 )
 
-func NewMapNode(contents []byte) (*MapNode, error) {
-	var elements map[string]any
-	err := json.Unmarshal(contents, &elements)
-	if err != nil {
-		// 타입이 다를 수 있다.
-		return nil, errors.WithStack(err)
-	}
+func NewMapNode(elements map[string]any) *MapNode {
 	ret := MapNode{
 		elements: map[string]Node{},
 	}
 	for key, value := range elements {
 		ret.AddNode(key, value)
 	}
-	return &ret, nil
+	return &ret
+}
+
+func NewMapNodeContents(contents []byte) (*MapNode, error) {
+	var elements map[string]any
+	err := json.Unmarshal(contents, &elements)
+	if err != nil {
+		// 타입이 다를 수 있다.
+		return nil, errors.WithStack(err)
+	}
+	return NewMapNode(elements), nil
 }
 
 var _ Node = &MapNode{}
